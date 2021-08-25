@@ -1,6 +1,12 @@
+import { execSync } from 'child_process'
 import colors from 'vuetify/es5/util/colors'
 
+const shortHash = execSync('git rev-parse --short HEAD').toString()
+// const tag = execSync('git describe --tags --abbrev=0').toString().trim()
+const tag = 'Undefined'
+
 export default {
+  telemetry: false,
   srcDir: 'src/',
 
   ssr: false,
@@ -30,7 +36,7 @@ export default {
     '@nuxtjs/vuetify',
   ],
 
-  modules: ['@nuxtjs/axios', '@nuxtjs/pwa'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', '@nuxtjs/recaptcha'],
 
   axios: {},
 
@@ -43,20 +49,41 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
+          maincolor: colors.shades.white,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
+          background: colors.grey.darken4,
+          archiveTitleColor: colors.amber.darken2,
+          archiveSubTitleColor: colors.blueGrey.darken3,
         },
+        light: {
+          maincolor: colors.shades.black,
+          background: colors.grey.lighten4,
+          archiveTitleColor: colors.amber.darken2,
+          archiveSubTitleColor: colors.blueGrey.lighten4,
+        },
+      },
+      options: {
+        customProperties: true,
       },
     },
   },
 
   build: {},
+
+  recaptcha: {
+    siteKey: '6Lfx01oaAAAAAEpbNZxACNq6O1S722415hpcDDF8',
+    version: 3,
+    hideBadge: true,
+  },
+
+  env: {
+    ShortHash: shortHash,
+    Tag: tag,
+  },
 }
