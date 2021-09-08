@@ -1,25 +1,26 @@
-/* eslint-disable no-undef */
 <template>
-  <form class="search-form" action="#" @keydown.enter="onSubmit">
-    <input
-      v-model="mcid"
-      class="user-search"
-      placeholder="Minecraft ID or UUID"
-      title="英数字とアンダーバーのみ使用できます。"
-      autocomplete="on"
-      pattern="^[0-9A-Za-z_]+$"
-      list="suggest-users"
-      @input="onSearch"
-    />
-    <datalist id="suggest-users">
-      <option v-for="user in suggestUsers" :key="user">{{ user }}</option>
-    </datalist>
-    <button
-      class="search-btn"
-      :class="{ disabled: disableSearchBtn }"
-      @click="onSubmit"
-    />
-  </form>
+  <div class="search-container">
+    <form class="search-form" action="#" @keydown.enter="onSubmit">
+      <input
+        v-model="mcid"
+        class="user-search"
+        placeholder="Minecraft ID or UUID"
+        title="英数字とアンダーバーのみ使用できます。"
+        autocomplete="on"
+        pattern="^[0-9A-Za-z_]+$"
+        list="suggest-users"
+        @input="onSearch"
+      />
+      <datalist id="suggest-users">
+        <option v-for="user in suggestUsers" :key="user">{{ user }}</option>
+      </datalist>
+      <button
+        class="search-btn"
+        :class="{ disabled: disableSearchBtn }"
+        @click.prevent="onSubmit"
+      />
+    </form>
+  </div>
 </template>
 
 <script lang="ts">

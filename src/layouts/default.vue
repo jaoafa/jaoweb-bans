@@ -2,9 +2,13 @@
   <v-app>
     <v-app-bar fixed app>
       <div class="logo">
-        <AppLogo width="38px" />
+        <nuxt-link to="/">
+          <AppLogo width="38px" />
+        </nuxt-link>
       </div>
-      <v-toolbar-title class="header-title">jMS Bans</v-toolbar-title>
+      <nuxt-link to="/" tag="div" style="cursor: pointer">
+        <v-toolbar-title class="header-title">jMS Bans</v-toolbar-title>
+      </nuxt-link>
     </v-app-bar>
     <v-main>
       <v-container>
