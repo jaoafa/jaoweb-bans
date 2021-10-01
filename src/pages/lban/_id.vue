@@ -49,6 +49,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  name: 'LBanDetail',
   data() {
     return {
       banType: 'LBan',
@@ -62,8 +63,15 @@ export default Vue.extend({
         banned_at: '処罰日時',
         updated_at: '情報更新日時',
       },
-      detail: {},
+      detail: {
+        player: '',
+      },
       proofs: [],
+    }
+  },
+  head() {
+    return {
+      title: this.$options.name,
     }
   },
   mounted() {
@@ -88,7 +96,7 @@ export default Vue.extend({
             },
           }
         )
-        .then((response) => {
+        .then((response: any) => {
           if (!response.data.status) {
             alert('Not Found')
             this.$router.push('/')
@@ -97,8 +105,10 @@ export default Vue.extend({
           this.banId = response.data.detail.banid
           this.detail = response.data.detail
           this.proofs = response.data.proofs
+
+          document.title = `${this.detail.player} - ${this.banType}#${this.banId} - jMS Bans`
         })
-        .catch((error) => {
+        .catch((error: any) => {
           if (error.status === 404) {
             alert('Not Found')
             this.$router.push('/')

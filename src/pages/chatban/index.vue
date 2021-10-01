@@ -17,10 +17,16 @@ import { $banDescription } from '~//plugins/banDescriptions'
 import { BanItemModel } from '~//plugins/models'
 
 export default Vue.extend({
+  name: 'ChatBan',
   data() {
     return {
       items: [],
       explanation: $banDescription,
+    }
+  },
+  head() {
+    return {
+      title: this.$options.name,
     }
   },
   mounted() {
@@ -40,7 +46,7 @@ export default Vue.extend({
             },
           }
         )
-        .then((response) => {
+        .then((response: any) => {
           this.items = response.data.items.map((item: BanItemModel) => {
             return {
               id: item.id,
@@ -53,7 +59,7 @@ export default Vue.extend({
             }
           })
         })
-        .catch((error) => {
+        .catch((error: any) => {
           // eslint-disable-next-line no-console
           console.error(error)
         })

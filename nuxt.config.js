@@ -14,12 +14,16 @@ export default {
   target: 'static',
 
   head: {
-    titleTemplate: '%s - jaoweb-bans',
-    title: 'jaoweb-bans',
+    titleTemplate: '%s - jMS Bans',
+    title: 'jMS Bans',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'jao Minecraft Server Bans',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },

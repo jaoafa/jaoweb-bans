@@ -94,6 +94,11 @@ export default Vue.extend({
       explanation: $banDescription,
     }
   },
+  head() {
+    return {
+      title: 'Top',
+    }
+  },
   mounted() {
     try {
       this.$recaptcha.init()
@@ -108,7 +113,7 @@ export default Vue.extend({
             'X-reCAPTCHA-Token': token,
           },
         })
-        .then((response) => {
+        .then((response: any) => {
           this.count.gban = response.data.count.gban
           this.count.lban = response.data.count.lban
 
@@ -142,7 +147,7 @@ export default Vue.extend({
             return 0
           })
         })
-        .catch((error) => {
+        .catch((error: any) => {
           // eslint-disable-next-line no-console
           console.error(error)
         })
@@ -155,7 +160,7 @@ export default Vue.extend({
             'X-reCAPTCHA-Token': token,
           },
         })
-        .then((response) => {
+        .then((response: any) => {
           this.count.vban = response.data.count
 
           this.all = this.all.concat(
@@ -176,7 +181,7 @@ export default Vue.extend({
             return 0
           })
         })
-        .catch((error) => {
+        .catch((error: any) => {
           // eslint-disable-next-line no-console
           console.error(error)
         })
@@ -189,7 +194,7 @@ export default Vue.extend({
             'X-reCAPTCHA-Token': token,
           },
         })
-        .then((response) => {
+        .then((response: any) => {
           this.count.eban = response.data.count
 
           this.all = this.all.concat(
@@ -210,7 +215,7 @@ export default Vue.extend({
             return 0
           })
         })
-        .catch((error) => {
+        .catch((error: any) => {
           // eslint-disable-next-line no-console
           console.error(error)
         })
@@ -223,7 +228,7 @@ export default Vue.extend({
             'X-reCAPTCHA-Token': token,
           },
         })
-        .then((response) => {
+        .then((response: any) => {
           this.count.chatban = response.data.count
 
           this.all = this.all.concat(
@@ -244,7 +249,7 @@ export default Vue.extend({
             return 0
           })
         })
-        .catch((error) => {
+        .catch((error: any) => {
           // eslint-disable-next-line no-console
           console.error(error)
         })
