@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { BanItemModel, MCBansItemModel } from '../index.vue'
+import { BanItemModel } from '../index.vue'
 import { $banDescription } from '../../plugins/banDescriptions'
 
 export default Vue.extend({
@@ -76,6 +76,7 @@ export default Vue.extend({
           })
         })
         .catch((error) => {
+          // eslint-disable-next-line no-console
           console.error(error)
         })
     })

@@ -76,6 +76,7 @@ export default Vue.extend({
           })
         })
         .catch((error) => {
+          // eslint-disable-next-line no-console
           console.error(error)
         })
     })
