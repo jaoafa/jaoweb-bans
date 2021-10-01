@@ -9,6 +9,22 @@
       <nuxt-link to="/" tag="div" style="cursor: pointer">
         <v-toolbar-title class="header-title">jMS Bans</v-toolbar-title>
       </nuxt-link>
+      <v-spacer />
+      <div class="version mt-7">
+        <a
+          :href="
+            'https://github.com/jaoafa/jaoweb-bans/releases/tag/' + getTag()
+          "
+          v-text="getTag()"
+        />
+        -
+        <a
+          :href="
+            'https://github.com/jaoafa/jaoweb-bans/commit/' + getShortHash()
+          "
+          v-text="getShortHash()"
+        />
+      </div>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -20,6 +36,20 @@
     </v-main>
   </v-app>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  methods: {
+    getTag() {
+      return process.env.Tag
+    },
+    getShortHash() {
+      return process.env.ShortHash
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .logo {

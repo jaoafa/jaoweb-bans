@@ -2,8 +2,7 @@ import { execSync } from 'child_process'
 import colors from 'vuetify/es5/util/colors'
 
 const shortHash = execSync('git rev-parse --short HEAD').toString()
-// const tag = execSync('git describe --tags --abbrev=0').toString().trim()
-const tag = 'Undefined'
+const tag = execSync('git describe --tags --abbrev=0').toString().trim()
 
 export default {
   telemetry: false,
