@@ -16,12 +16,64 @@ export default {
     titleTemplate: '%s - jMS Bans',
     title: 'jMS Bans',
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        charset: 'utf-8',
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      {
+        name: 'msapplication-TileColor',
+        content: '#ffb41d',
+      } /*
+      {
+        name: 'msapplication-config',
+        content: '/favicons/browserconfig.xml',
+      }, */,
+      {
+        name: 'theme-color',
+        content: '#ffb41d',
+      },
       {
         hid: 'description',
         name: 'description',
         content: 'jao Minecraft Server Bans',
+      },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: 'jMS Bans',
+      },
+      {
+        hid: 'og:type',
+        property: 'og:type',
+        content: 'article',
+      },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://bans.jaoafa.com',
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'jMS Bans',
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: 'jao Minecraft Server Bans',
+      },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary',
+      },
+      {
+        hid: 'twitter:site',
+        name: 'twitter:site',
+        content: '@jaoafa',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
