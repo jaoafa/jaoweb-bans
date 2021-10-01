@@ -26,7 +26,7 @@ export default {
 
   css: [],
 
-  plugins: [],
+  plugins: ['~/plugins/banDescriptions'],
 
   components: true,
 
