@@ -117,6 +117,7 @@ export default Vue.extend({
               return {
                 id: item.banid,
                 mcid: item.mcid,
+                uuid: item.uuid,
                 type: 'GBan',
                 reason: item.reason,
                 bannedAt: new Date(item.banned_at),
@@ -128,6 +129,7 @@ export default Vue.extend({
               return {
                 id: item.banid,
                 mcid: item.mcid,
+                uuid: item.uuid,
                 type: 'LBan',
                 reason: item.reason,
                 bannedAt: new Date(item.banned_at),
@@ -161,6 +163,7 @@ export default Vue.extend({
               return {
                 id: item.id,
                 mcid: item.mcid,
+                uuid: item.uuid,
                 type: 'VBan',
                 reason: item.reason,
                 bannedAt: new Date(item.banned_at),
@@ -194,6 +197,7 @@ export default Vue.extend({
               return {
                 id: item.id,
                 mcid: item.mcid,
+                uuid: item.uuid,
                 type: 'EBan',
                 reason: item.reason,
                 bannedAt: new Date(item.banned_at),
@@ -227,6 +231,7 @@ export default Vue.extend({
               return {
                 id: item.id,
                 mcid: item.mcid,
+                uuid: item.uuid,
                 type: 'ChatBan',
                 reason: item.reason,
                 bannedAt: new Date(item.banned_at),

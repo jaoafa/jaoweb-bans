@@ -4,6 +4,7 @@
       <template #default>
         <thead>
           <tr>
+            <th />
             <th class="text-left">MinecraftID</th>
             <th class="text-left">Type</th>
             <th class="text-left">BannedAt</th>
@@ -15,6 +16,12 @@
             v-for="item in items.slice(0, 15)"
             :key="item.type + '-' + item.id"
           >
+            <td>
+              <v-img
+                width="40"
+                :src="`https://crafatar.com/avatars/${item.uuid}?scale=1&overlay`"
+              />
+            </td>
             <td>{{ item.mcid }}</td>
             <td>{{ item.type }}</td>
             <td>{{ formatDate(item.bannedAt, 'yyyy/MM/dd HH:mm:ss') }}</td>
@@ -24,7 +31,7 @@
                 x-small
                 color="#ffb41d"
                 dark
-                :to="item.type.toLowerCase() + '/' + item.id"
+                :to="`${item.type.toLowerCase()}/${item.id}`"
               >
                 <v-icon dark>mdi-chevron-right</v-icon>
               </v-btn>
@@ -43,6 +50,7 @@ import Vue, { PropType } from 'vue'
 export interface RecentItemModel {
   id: number
   mcid: string
+  uuid: string
   type: string
   reason: string
   bannedAt: Date
