@@ -66,32 +66,8 @@ import {
   $banDescription,
   BanDescriptionModel,
 } from '../plugins/banDescriptions'
-import { RecentItemModel } from '@/src/components/RecentTable.vue'
-
-export interface MCBansItemModel {
-  banid: number
-  mcid: string
-  uuid: string
-  reason: string
-  // eslint-disable-next-line camelcase
-  banned_at: string
-}
-export interface VBanItemModel {
-  id: number
-  mcid: string
-  uuid: string
-  reason: string
-  // eslint-disable-next-line camelcase
-  banned_at: string
-}
-export interface BanItemModel {
-  id: number
-  mcid: string
-  uuid: string
-  reason: string
-  // eslint-disable-next-line camelcase
-  banned_at: string
-}
+import { MCBansItemModel, BanItemModel } from '~//plugins/models'
+import { RecentItemModel } from '@/components/RecentTable.vue'
 
 export default Vue.extend({
   components: { BanExplanationCard },
@@ -181,7 +157,7 @@ export default Vue.extend({
           this.count.vban = response.data.count
 
           this.all = this.all.concat(
-            response.data.items.map((item: VBanItemModel) => {
+            response.data.items.map((item: BanItemModel) => {
               return {
                 id: item.id,
                 mcid: item.mcid,

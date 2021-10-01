@@ -33,8 +33,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { MCBansItemModel } from '../index.vue'
 import { $banDescription } from '../../plugins/banDescriptions'
+import { MCBansItemModel } from '~//plugins/models'
 
 export default Vue.extend({
   data() {
@@ -59,11 +59,14 @@ export default Vue.extend({
     }
     this.$recaptcha.execute('login').then((token: string) => {
       this.$axios
-        .get('https://api.jaoafa.com/v2/bans/recent/mcbans?all_items=true', {
-          headers: {
-            'X-reCAPTCHA-Token': token,
-          },
-        })
+        .get(
+          'https://api.jaoafa.com/v2/bans/recent/mcbans?all_items=true&active_only=false',
+          {
+            headers: {
+              'X-reCAPTCHA-Token': token,
+            },
+          }
+        )
         .then((response) => {
           this.items = response.data.items.gban.map((item: MCBansItemModel) => {
             return {

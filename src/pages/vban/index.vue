@@ -3,12 +3,13 @@
     <v-row no-gutters>
       <v-col cols="12">
         <h1>VBan 一覧</h1>
-        <p>{{ explanation.eban }}</p>
+        <p>{{ explanation.vban }}</p>
 
         <v-data-table
           :headers="headers"
           :items="items"
           :items-per-page="15"
+          :item-class="checkStatus"
           class="elevation-1"
         >
           <template #[`item.bannedAt`]="{ item }">
@@ -33,8 +34,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { VBanItemModel } from '../index.vue'
-import { $banDescription } from '../../plugins/banDescriptions'
+import { $banDescription } from '~/plugins/banDescriptions'
+import { BanItemModel } from '~/plugins/models'
 
 export default Vue.extend({
   data() {
@@ -59,18 +60,22 @@ export default Vue.extend({
     }
     this.$recaptcha.execute('login').then((token: string) => {
       this.$axios
-        .get('https://api.jaoafa.com/v2/bans/recent/vban?all_items=true', {
-          headers: {
-            'X-reCAPTCHA-Token': token,
-          },
-        })
+        .get(
+          'https://api.jaoafa.com/v2/bans/recent/vban?all_items=true&active_only=false',
+          {
+            headers: {
+              'X-reCAPTCHA-Token': token,
+            },
+          }
+        )
         .then((response) => {
-          this.items = response.data.items.map((item: VBanItemModel) => {
+          this.items = response.data.items.map((item: BanItemModel) => {
             return {
               id: item.id,
               mcid: item.mcid,
               type: 'VBan',
               reason: item.reason,
+              status: item.status,
               bannedAt: new Date(item.banned_at),
             }
           })
@@ -92,6 +97,15 @@ export default Vue.extend({
       format = format.replace(/SSS/g, ('00' + date.getMilliseconds()).slice(-3))
       return format
     },
+    checkStatus(item: BanItemModel): string {
+      return item.status ? 'active' : 'inactive'
+    },
   },
 })
 </script>
+
+<style lang="scss">
+.inactive {
+  background-color: darkgray !important;
+}
+</style>
