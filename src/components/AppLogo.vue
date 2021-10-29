@@ -45,6 +45,7 @@ export default Vue.extend({
 .st {
   fill: #fff;
 }
+
 .st0 {
   fill: none;
   stroke: #fff;

@@ -58,6 +58,7 @@ export default Vue.extend({
   background-color: #ffb41d;
   padding: 3px;
 }
+
 .header-title {
   font-style: normal;
   font-weight: 900;
