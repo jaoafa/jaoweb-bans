@@ -9,7 +9,7 @@
             <v-carousel-item
               v-for="(proof, index) in proofs"
               :key="index"
-              :src="`https://storage.jaoafa.com/${proof}`"
+              :src="proof"
             />
           </v-carousel>
         </v-container>
@@ -50,7 +50,14 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'ChatBanDetail',
-  data() {
+  data(): {
+    banType: string
+    banId: string
+    keys: { [key: string]: string }
+    detail: { [key: string]: any }
+    proofs: string[]
+    proofIds: string[]
+  } {
     return {
       banType: 'ChatBan',
       banId: '',
@@ -68,6 +75,7 @@ export default Vue.extend({
         player: '',
       },
       proofs: [],
+      proofIds: [],
     }
   },
   head() {
@@ -105,9 +113,25 @@ export default Vue.extend({
           }
           this.banId = response.data.detail.id
           this.detail = response.data.detail
-          this.proofs = response.data.proofs
+          this.proofIds = response.data.proofs
 
           document.title = `${this.detail.player} - ${this.banType}#${this.banId} - jMS Bans`
+
+          for (const proof of response.data.proofs) {
+            this.$axios
+              .get(`https://storage.jaoafa.com/${proof}`, {
+                responseType: 'arraybuffer',
+              })
+              .then((response: any) => {
+                const blob = new Blob([response.data])
+
+                const reader = new FileReader()
+                reader.readAsDataURL(response.data)
+                reader.onload = () => {
+                  this.proofs.push(window.URL.createObjectURL(blob))
+                }
+              })
+          }
         })
         .catch((error: any) => {
           if (error.status === 404) {
