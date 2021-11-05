@@ -40,6 +40,7 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
+  name: 'DefaultPage',
   methods: {
     getTag() {
       return process.env.Tag

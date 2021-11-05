@@ -70,6 +70,7 @@ import { MCBansItemModel, BanItemModel } from '~//plugins/models'
 import { RecentItemModel } from '@/components/RecentTable.vue'
 
 export default Vue.extend({
+  name: 'IndexPage',
   components: { BanExplanationCard },
   data(): {
     all: RecentItemModel[]
