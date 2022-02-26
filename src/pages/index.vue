@@ -10,6 +10,7 @@
           <v-col sm="6" cols="12">
             <ban-explanation-card
               name="GBan"
+              :is-deprecated="true"
               :count="count.gban"
               :explanation="explanation.gban"
             />
@@ -22,6 +23,7 @@
           <v-col sm="6" cols="12">
             <ban-explanation-card
               name="LBan"
+              :is-deprecated="true"
               :count="count.lban"
               :explanation="explanation.lban"
             />
