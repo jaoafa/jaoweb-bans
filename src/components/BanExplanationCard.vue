@@ -1,6 +1,13 @@
 <template>
   <v-card class="ma-5" :loading="count == null">
-    <v-card-title v-text="name" />
+    <v-card-title>
+      {{ name }}
+      <v-spacer />
+      <v-chip v-if="isDeprecated" color="red lighten-1" dark>
+        <v-icon class="mx-1">mdi-alert-circle-outline</v-icon>
+        廃止
+      </v-chip>
+    </v-card-title>
     <v-card-subtitle v-text="count != null ? count + ' 件' : ''" />
     <v-card-actions>
       <v-btn icon @click="explanationShowing = !explanationShowing">
@@ -40,6 +47,10 @@ export default Vue.extend({
     name: {
       type: String,
       required: true,
+    },
+    isDeprecated: {
+      type: Boolean,
+      required: false,
     },
     count: {
       type: Number,
