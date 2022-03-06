@@ -6,18 +6,37 @@
         <RecentTable :items="all" />
       </v-col>
       <v-col sm="6" cols="12">
-        <v-row>
+        <v-row no-gutters>
+          <v-col sm="6" cols="12">
+            <ban-explanation-card
+              name="VBan"
+              :count="count.vban"
+              :explanation="explanation.vban"
+            />
+          </v-col>
+          <v-col sm="6" cols="12">
+            <ban-explanation-card
+              name="EBan"
+              :count="count.eban"
+              :explanation="explanation.eban"
+            />
+          </v-col>
+          <v-col sm="12" cols="12">
+            <ban-explanation-card
+              name="ChatBan"
+              :count="count.chatban"
+              :explanation="explanation.chatban"
+            />
+          </v-col>
+        </v-row>
+
+        <v-row no-gutters>
           <v-col sm="6" cols="12">
             <ban-explanation-card
               name="GBan"
               :is-deprecated="true"
               :count="count.gban"
               :explanation="explanation.gban"
-            />
-            <ban-explanation-card
-              name="VBan"
-              :count="count.vban"
-              :explanation="explanation.vban"
             />
           </v-col>
           <v-col sm="6" cols="12">
@@ -27,21 +46,10 @@
               :count="count.lban"
               :explanation="explanation.lban"
             />
-            <ban-explanation-card
-              name="EBan"
-              :count="count.eban"
-              :explanation="explanation.eban"
-            />
           </v-col>
         </v-row>
 
-        <ban-explanation-card
-          name="ChatBan"
-          :count="count.chatban"
-          :explanation="explanation.chatban"
-        />
-
-        <v-card class="ma-5">
+        <v-card class="ma-2">
           <v-card-text>
             このWebサイトで公開されている情報は最新ではない可能性があります。
             <br />

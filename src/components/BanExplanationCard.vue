@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-5" :loading="count == null">
+  <v-card class="ma-2" :loading="count == null">
     <v-card-title>
       {{ name }}
       <v-spacer />
