@@ -109,7 +109,6 @@ export default Vue.extend({
           }
           this.banId = response.data.detail.banid
           this.detail = response.data.detail
-          this.proofIds = response.data.proofs
 
           document.title = `${this.detail.player} - ${this.banType}#${this.banId} - jMS Bans`
 

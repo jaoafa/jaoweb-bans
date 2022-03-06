@@ -112,7 +112,6 @@ export default Vue.extend({
           }
           this.banId = response.data.detail.banid
           this.detail = response.data.detail
-          this.proofs = response.data.proofs
 
           document.title = `${this.detail.player} - ${this.banType}#${this.banId} - jMS Bans`
 
@@ -125,7 +124,7 @@ export default Vue.extend({
                 const blob = new Blob([response.data])
 
                 const reader = new FileReader()
-                reader.readAsDataURL(response.data)
+                reader.readAsDataURL(blob)
                 reader.onload = () => {
                   this.proofs.push(window.URL.createObjectURL(blob))
                 }
