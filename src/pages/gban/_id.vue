@@ -112,20 +112,22 @@ export default Vue.extend({
 
           document.title = `${this.detail.player} - ${this.banType}#${this.banId} - jMS Bans`
 
-          for (const proof of response.data.proofs) {
-            this.$axios
-              .get(`https://storage.jaoafa.com/${proof}`, {
-                responseType: 'arraybuffer',
-              })
-              .then((response: any) => {
-                const blob = new Blob([response.data])
+          if (response.data.proofs !== null) {
+            for (const proof of response.data.proofs) {
+              this.$axios
+                .get(`https://storage.jaoafa.com/${proof}`, {
+                  responseType: 'arraybuffer',
+                })
+                .then((response: any) => {
+                  const blob = new Blob([response.data])
 
-                const reader = new FileReader()
-                reader.readAsDataURL(blob)
-                reader.onload = () => {
-                  this.proofs.push(window.URL.createObjectURL(blob))
-                }
-              })
+                  const reader = new FileReader()
+                  reader.readAsDataURL(blob)
+                  reader.onload = () => {
+                    this.proofs.push(window.URL.createObjectURL(blob))
+                  }
+                })
+            }
           }
         })
         .catch((error: any) => {

@@ -54,7 +54,8 @@ export default Vue.extend({
     },
     count: {
       type: Number,
-      required: true,
+      required: false,
+      default: null,
     },
     explanation: {
       type: String,
