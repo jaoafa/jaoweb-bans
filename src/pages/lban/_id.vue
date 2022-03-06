@@ -4,12 +4,14 @@
       <v-col cols="12">
         <h1>{{ banType }}#{{ banId }} - {{ detail.player }}</h1>
 
-        <v-container>
-          <v-carousel cycle height="auto">
+        <v-container v-if="proofs.length > 0">
+          <v-carousel cycle max-height="500px">
             <v-carousel-item
               v-for="(proof, index) in proofs"
               :key="index"
               :src="proof"
+              :href="`https://storage.jaoafa.com/${proofIds[index]}`"
+              target="_blank"
             />
           </v-carousel>
         </v-container>
@@ -29,9 +31,33 @@
                   <code>{{ Boolean(detail[key]) }}</code>
                 </td>
                 <td v-else-if="key == 'player'">
-                  <a :href="`https://users.jaoafa.com/${detail['uuid']}`">
-                    {{ detail[key] }}
-                  </a>
+                  <v-avatar size="32px" class="mr-2">
+                    <v-img
+                      :src="`https://crafatar.com/avatars/${detail['uuid']}?scale=1&overlay`"
+                    />
+                  </v-avatar>
+                  {{ detail[key] }}
+                  <v-btn
+                    fab
+                    x-small
+                    color="#ffb41d"
+                    dark
+                    :to="`/${detail['uuid']}`"
+                    class="ml-2"
+                    title="その他のBanを見る"
+                  >
+                    <v-icon dark>mdi-file-document-multiple-outline</v-icon>
+                  </v-btn>
+                  <v-btn
+                    fab
+                    x-small
+                    color="#ffb41d"
+                    dark
+                    :href="`https://users.jaoafa.com/${detail['uuid']}`"
+                    title="ユーザーページを見る"
+                  >
+                    <v-icon dark>mdi-badge-account-horizontal-outline</v-icon>
+                  </v-btn>
                 </td>
                 <td v-else>
                   <code>{{ detail[key] }}</code>
@@ -128,6 +154,7 @@ export default Vue.extend({
                   reader.readAsDataURL(blob)
                   reader.onload = () => {
                     this.proofs.push(window.URL.createObjectURL(blob))
+                    this.proofIds.push(proof)
                   }
                 })
             }
