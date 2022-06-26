@@ -8,7 +8,9 @@
         廃止
       </v-chip>
     </v-card-title>
-    <v-card-subtitle v-text="count != null ? count + ' 件' : ''" />
+    <v-card-subtitle>
+      <span v-text="count != null ? count + ' 件' : ''" />
+    </v-card-subtitle>
     <v-card-actions>
       <v-btn icon @click="explanationShowing = !explanationShowing">
         <v-icon>
@@ -33,7 +35,7 @@
       <div v-show="explanationShowing">
         <v-divider />
 
-        <v-card-text v-text="explanation" />
+        <v-card-text><span v-text="explanation" /></v-card-text>
       </div>
     </v-expand-transition>
   </v-card>
