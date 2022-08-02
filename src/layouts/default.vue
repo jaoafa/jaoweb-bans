@@ -28,9 +28,6 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <VAlert type="error">
-          本アプリはベータ版です。不具合等がかなりある可能性があります。たぶん。
-        </VAlert>
         <nuxt />
       </v-container>
     </v-main>
